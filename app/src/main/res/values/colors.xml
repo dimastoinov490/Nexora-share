@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_main">#101114</color>
+    <color name="surface_card">#1C1E23</color>
+    <color name="surface_elevated">#262A32</color>
+    <color name="border_card">#2E323B</color>
+    <color name="orange_primary">#FF8A00</color>
+    <color name="orange_accent">#FFAE33</color>
+    <color name="orange_glow">#33FF8A00</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#A0A4AB</color>
+    <color name="status_green">#00E676</color>
+    <color name="status_red">#FF5252</color>
+</resources>

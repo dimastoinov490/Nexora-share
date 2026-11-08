@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Nexora Share</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF8A00'><path d='M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 10v-3h-4v-2h4V8l4 4-4 4z'/></svg>">
+</head>
+<body>
+  <!-- App Shell -->
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/>
+            <path d="M8.5 13.5a5 5 0 0 1 7 0" stroke="#FF8A00" stroke-width="2.5"/>
+            <path d="M10.5 15.5a2 2 0 0 1 3 0" stroke="#FFAE33" stroke-width="2.5"/>
+            <circle cx="12" cy="17" r="1" fill="#FF8A00"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Nexora <span class="accent">Share</span></span>
+          <span class="brand-sub">Wi-Fi File Hub</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+          <span>Главная</span>
+        </button>
+        <button class="nav-item" data-tab="photos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Фотографии</span>
+          <span class="badge" id="badge-photos">0</span>
+        </button>
+        <button class="nav-item" data-tab="videos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          <span>Видео</span>
+          <span class="badge" id="badge-videos">0</span>
+        </button>
+        <button class="nav-item" data-tab="files">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          <span>Проводник</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="device-card">
+          <div class="device-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div class="device-info">
+            <span class="device-name" id="device-model">Android Phone</span>
+            <span class="device-status"><span class="dot"></span> Подключено</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Header -->
+      <header class="top-header">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+
+        <div class="search-bar">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="global-search" placeholder="Поиск файлов по названию..." autocomplete="off">
+          <button class="clear-search" id="clear-search" style="display:none;">&times;</button>
+        </div>
+
+        <div class="header-actions">
+          <button class="header-btn" id="refresh-btn" title="Обновить список">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            <span class="btn-text">Обновить</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Scrollable Container -->
+      <div class="content-body">
+        <!-- 1. DASHBOARD VIEW -->
+        <section class="tab-view active" id="view-dashboard">
+          <div class="hero-banner">
+            <div class="hero-content">
+              <h1>Добро пожаловать в <span class="accent">Nexora Share</span></h1>
+              <p>Прямой доступ к фото, видео и файлам внутренней памяти вашего телефона без интернета и проводов.</p>
+            </div>
+            <div class="hero-stats">
+              <div class="stat-card" data-target="photos">
+                <div class="stat-icon icon-photo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-value" id="stat-photos">0</span>
+                  <span class="stat-label">Фотографий</span>
+                </div>
+              </div>
+
+              <div class="stat-card" data-target="videos">
+                <div class="stat-icon icon-video">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-value" id="stat-videos">0</span>
+                  <span class="stat-label">Видеозаписей</span>
+                </div>
+              </div>
+
+              <div class="stat-card" data-target="files">
+                <div class="stat-icon icon-folder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-value" id="stat-files">0</span>
+                  <span class="stat-label">Всего файлов</span>
+                </div>
+              </div>
+
+              <div class="stat-card" data-target="files">
+                <div class="stat-icon icon-storage">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-value" id="stat-storage">0 MB</span>
+                  <span class="stat-label">Общий объём</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Access Sections -->
+          <div class="section-header">
+            <h2>Недавние фотографии</h2>
+            <button class="link-btn" data-target="photos">Смотреть все &rarr;</button>
+          </div>
+          <div class="recent-grid photos-grid" id="dashboard-recent-photos">
+            <div class="loading-spinner"><div class="spin"></div> Загрузка фото...</div>
+          </div>
+
+          <div class="section-header" style="margin-top: 32px;">
+            <h2>Недавние видео</h2>
+            <button class="link-btn" data-target="videos">Смотреть все &rarr;</button>
+          </div>
+          <div class="recent-grid videos-grid" id="dashboard-recent-videos">
+            <div class="loading-spinner"><div class="spin"></div> Загрузка видео...</div>
+          </div>
+        </section>
+
+        <!-- 2. PHOTOS VIEW -->
+        <section class="tab-view" id="view-photos">
+          <div class="view-header">
+            <div>
+              <h2>Галерея фотографий</h2>
+              <p class="section-desc">Оригинальные фото из памяти телефона без сжатия</p>
+            </div>
+            <div class="filter-pills" id="photos-folder-pills">
+              <button class="pill active" data-folder="all">Все фото</button>
+              <button class="pill" data-folder="DCIM/Camera">Камера</button>
+              <button class="pill" data-folder="Pictures/Screenshots">Скриншоты</button>
+              <button class="pill" data-folder="Download">Загрузки</button>
+              <button class="pill" data-folder="Pictures">Pictures</button>
+            </div>
+          </div>
+
+          <div class="gallery-container">
+            <div class="photos-grid" id="photos-grid">
+              <!-- Rendered via JS -->
+            </div>
+            <div class="load-more-wrap" id="photos-load-more" style="display:none;">
+              <button class="btn btn-secondary" id="btn-load-more-photos">Загрузить ещё</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. VIDEOS VIEW -->
+        <section class="tab-view" id="view-videos">
+          <div class="view-header">
+            <div>
+              <h2>Видеотека</h2>
+              <p class="section-desc">Воспроизведение в браузере с быстрой перемоткой и скачивание оригиналов</p>
+            </div>
+            <div class="filter-pills" id="videos-folder-pills">
+              <button class="pill active" data-folder="all">Все видео</button>
+              <button class="pill" data-folder="DCIM/Camera">Камера</button>
+              <button class="pill" data-folder="Movies">Фильмы</button>
+              <button class="pill" data-folder="Download">Загрузки</button>
+            </div>
+          </div>
+
+          <div class="videos-grid" id="videos-grid">
+            <!-- Rendered via JS -->
+          </div>
+          <div class="load-more-wrap" id="videos-load-more" style="display:none;">
+            <button class="btn btn-secondary" id="btn-load-more-videos">Загрузить ещё</button>
+          </div>
+        </section>
+
+        <!-- 4. FILE EXPLORER VIEW -->
+        <section class="tab-view" id="view-files">
+          <div class="explorer-card">
+            <!-- Breadcrumbs Bar -->
+            <div class="explorer-toolbar">
+              <div class="breadcrumbs" id="breadcrumbs">
+                <button class="crumb-btn" data-path="">Внутренняя память</button>
+              </div>
+
+              <div class="explorer-actions">
+                <select id="files-sort" class="select-dropdown">
+                  <option value="name_asc">Имя (А-Я)</option>
+                  <option value="name_desc">Имя (Я-А)</option>
+                  <option value="date_desc" selected>Новые сначала</option>
+                  <option value="date_asc">Старые сначала</option>
+                  <option value="size_desc">Размер (по убыванию)</option>
+                  <option value="size_asc">Размер (по возрастанию)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Quick folder shortcuts -->
+            <div class="folder-shortcuts" id="folder-shortcuts">
+              <button class="shortcut-chip" data-path="DCIM">DCIM</button>
+              <button class="shortcut-chip" data-path="Pictures">Pictures</button>
+              <button class="shortcut-chip" data-path="Download">Download</button>
+              <button class="shortcut-chip" data-path="Documents">Documents</button>
+              <button class="shortcut-chip" data-path="Movies">Movies</button>
+              <button class="shortcut-chip" data-path="Music">Music</button>
+              <button class="shortcut-chip" data-path="Recordings">Recordings</button>
+            </div>
+
+            <!-- File List -->
+            <div class="file-table-wrap">
+              <table class="file-table">
+                <thead>
+                  <tr>
+                    <th class="th-name">Название</th>
+                    <th class="th-size">Размер</th>
+                    <th class="th-date">Дата изменения</th>
+                    <th class="th-action">Действие</th>
+                  </tr>
+                </thead>
+                <tbody id="files-tbody">
+                  <!-- Rendered via JS -->
+                </tbody>
+              </table>
+            </div>
+            <div class="table-empty" id="table-empty" style="display:none;">Папка пуста</div>
+          </div>
+        </section>
+
+        <!-- 5. SEARCH RESULTS VIEW -->
+        <section class="tab-view" id="view-search">
+          <div class="view-header">
+            <div>
+              <h2>Результаты поиска: <span class="accent" id="search-query-text"></span></h2>
+              <p class="section-desc" id="search-count-text">Найдено файлов: 0</p>
+            </div>
+            <button class="pill" id="btn-close-search">&larr; Вернуться</button>
+          </div>
+          <div class="search-results-list" id="search-results-grid"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Photo Lightbox Modal -->
+  <div class="modal photo-modal" id="photo-modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-topbar">
+        <div class="modal-file-info">
+          <span class="modal-filename" id="modal-photo-name">photo.jpg</span>
+          <span class="modal-meta" id="modal-photo-meta">0 MB • 01.01.2026</span>
+        </div>
+        <div class="modal-actions">
+          <a class="btn btn-primary" id="modal-photo-download" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Скачать оригинал</span>
+          </a>
+          <button class="modal-close-btn" id="modal-photo-close">&times;</button>
+        </div>
+      </div>
+      <div class="modal-image-stage">
+        <button class="nav-arrow prev" id="photo-prev" aria-label="Предыдущее фото">&#10094;</button>
+        <div class="image-wrapper">
+          <img id="modal-photo-img" src="" alt="Фотография">
+        </div>
+        <button class="nav-arrow next" id="photo-next" aria-label="Следующее фото">&#10095;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Player Modal -->
+  <div class="modal video-modal" id="video-modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-topbar">
+        <div class="modal-file-info">
+          <span class="modal-filename" id="modal-video-name">video.mp4</span>
+          <span class="modal-meta" id="modal-video-meta">0 MB</span>
+        </div>
+        <div class="modal-actions">
+          <a class="btn btn-primary" id="modal-video-download" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Скачать оригинал</span>
+          </a>
+          <button class="modal-close-btn" id="modal-video-close">&times;</button>
+        </div>
+      </div>
+      <div class="modal-video-stage">
+        <video id="modal-video-element" controls playsinline preload="metadata">
+          <source src="" type="video/mp4">
+          Ваш браузер не поддерживает встроенное воспроизведение видео.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

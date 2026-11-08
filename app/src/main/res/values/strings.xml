@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nexora Share</string>
+    <string name="server_title">Nexora Share</string>
+    <string name="server_subtitle">Локальный файловый Wi-Fi сервер</string>
+    <string name="server_status_running">Сервер запущен</string>
+    <string name="server_status_stopped">Сервер остановлен</string>
+    <string name="server_status_starting">Запуск сервера…</string>
+    <string name="start_server">Запустить сервер</string>
+    <string name="stop_server">Остановить сервер</string>
+    <string name="server_address_label">Адрес для подключения в браузере</string>
+    <string name="copy_address">Скопировать адрес</string>
+    <string name="address_copied">Адрес скопирован в буфер обмена</string>
+    <string name="wifi_status_connected">Подключено к Wi-Fi</string>
+    <string name="wifi_status_disconnected">Wi-Fi не подключён. Подключитесь к сети Wi-Fi или включите точку доступа</string>
+    <string name="instructions_title">Как пользоваться</string>
+    <string name="instructions_step1">1. Убедитесь, что оба устройства в одной Wi-Fi сети</string>
+    <string name="instructions_step2">2. Откройте браузер на компьютере, iPhone или другом устройстве</string>
+    <string name="instructions_step3">3. Перейдите по указанному выше адресу</string>
+    <string name="permission_storage_title">Доступ к файлам</string>
+    <string name="permission_storage_desc">Nexora Share нужен доступ к файлам памяти телефона, чтобы вы могли просматривать и скачивать фото, видео и документы в браузере.</string>
+    <string name="grant_permission">Предоставить доступ</string>
+    <string name="permission_manage_storage_button">Открыть настройки доступа</string>
+    <string name="notification_channel_name">Служба сервера Nexora Share</string>
+    <string name="notification_channel_desc">Уведомление о фоновой работе Wi-Fi сервера</string>
+    <string name="notification_title">Nexora Share активен</string>
+    <string name="notification_content">Сервер доступен по адресу %1$s</string>
+    <string name="notification_action_stop">Остановить</string>
+</resources>
